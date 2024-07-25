@@ -1,9 +1,23 @@
 package com.dhanush.springproject1.model;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
+@Data /*
+       * This annotation is from lombok package, it helps to reduce boiler plate code.
+       * Lombok automatically generates the getters, setters, equals(), hashCode(),
+       * and *toString() methods for the below fields
+       */
+@Entity
 public class load {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long shipperId;
 
     private String loadingPoint;
     private String unloadingPoint;
@@ -11,117 +25,25 @@ public class load {
     private String truckType;
     private int noOfTrucks;
     private int weight;
-    private long shipperId;
-    private SimpleDateFormat Date;
+    private String comment;
+    private LocalDate date;
 
-    /**
-     * 
-     */
-    public load() {
-
-    }
-
-
-    public load (String loadingPoint, String unloadingpoint, String productType, String truckType, String noOfTrucks, int weight, int shipperID, SimpleDateFormat Date ){
-        this.loadingPoint = "delhi";
-        this.unloadingPoint = "jaipur";
-        this.productType = "chemicals";
-        this.truckType = "canter";
-        this.noOfTrucks = 1;
-        this.weight = 100;
-        this.shipperId = 01;
-        //this.Date = 09-09-2024; 
-    }
-
-
-    public String getLoadingPoint() {
-        return loadingPoint;
-    }
-
-
-    public void setLoadingPoint(String loadingPoint) {
-        this.loadingPoint = loadingPoint;
-    }
-
-
-    public String getUnloadingPoint() {
-        return unloadingPoint;
-    }
-
-
-    public void setUnloadingPoint(String unloadingPoint) {
-        this.unloadingPoint = unloadingPoint;
-    }
-
-
-    public String getProductType() {
-        return productType;
-    }
-
-
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
-
-    public String getTruckType() {
-        return truckType;
-    }
-
-
-    public void setTruckType(String truckType) {
-        this.truckType = truckType;
-    }
-
-
-    public int getNoOfTrucks() {
-        return noOfTrucks;
-    }
-
-
-    public void setNoOfTrucks(int noOfTrucks) {
-        this.noOfTrucks = noOfTrucks;
-    }
-
-
-    public int getWeight() {
-        return weight;
-    }
-
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-
-    public long getShipperId() {
-        return shipperId;
-    }
-
-
-    public void setShipperId(long shipperId) {
+    public load(long shipperId, String loadingPoint, String unloadingPoint, String productType, String truckType,
+            int noOfTrucks, int weight, String comment, LocalDate date) {
+        super();
         this.shipperId = shipperId;
+        this.loadingPoint = loadingPoint;
+        this.unloadingPoint = unloadingPoint;
+        this.productType = productType;
+        this.truckType = truckType;
+        this.noOfTrucks = noOfTrucks;
+        this.weight = weight;
+        this.comment = comment;
+        this.date = date;
     }
 
-
-    public SimpleDateFormat getDate() {
-        return Date;
+    public load() {
+        super();
     }
-
-
-    public void setDate(SimpleDateFormat date) {
-        Date = date;
-    }
-
-    /* 
-
-    @Override
-    public String toString() {
-        
-    }
-
-    */
-    
-
 
 }
