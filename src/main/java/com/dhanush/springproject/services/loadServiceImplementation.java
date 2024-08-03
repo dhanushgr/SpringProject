@@ -22,7 +22,7 @@ public class loadServiceImplementation implements loadService{
     }
 
     @Override
-    public Optional<load> getLoads(long loadId){
+    public Optional<load> getLoad(long loadId){
         return loadrepository.findById(loadId);
     }
 

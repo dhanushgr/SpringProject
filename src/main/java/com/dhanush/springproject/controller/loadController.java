@@ -62,9 +62,9 @@ public class loadController {
     }
 
     @GetMapping("/load/{loadId}")
-    public ResponseEntity<load> getLoads(@PathVariable long loadId) {
+    public ResponseEntity<load> getLoad(@PathVariable long loadId) {
         try {
-            Optional<load> loadData = this.loadservice.getLoads(loadId);
+            Optional<load> loadData = this.loadservice.getLoad(loadId);
             if (loadData.isPresent()) {
                 return new ResponseEntity<>(loadData.get(), HttpStatus.OK);
             } else {

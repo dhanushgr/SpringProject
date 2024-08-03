@@ -11,7 +11,7 @@ public interface loadService {
 
     public List<load> getAllLoads();
 
-    public Optional<load> getLoads(long loadId);
+    public Optional<load> getLoad(long loadId);
 
     public List<load> getLoadsByShipperId(UUID shipperId);
 
