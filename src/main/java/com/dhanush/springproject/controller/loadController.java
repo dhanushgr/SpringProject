@@ -89,7 +89,7 @@ public class loadController {
     public ResponseEntity<load> updateLoad(@RequestBody load Load) {
         try{
             load _load = this.loadservice.updateLoad(Load);
-            return new ResponseEntity<>(_load, HttpStatus.CREATED);
+            return new ResponseEntity<>(_load, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -99,7 +99,7 @@ public class loadController {
     public ResponseEntity<HttpStatus> deleteLoad(@PathVariable String loadId){
         try{
             this.loadservice.deleteLoad(Long.parseLong(loadId));
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

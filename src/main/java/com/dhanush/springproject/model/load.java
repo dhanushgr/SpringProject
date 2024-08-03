@@ -3,9 +3,7 @@ package com.dhanush.springproject.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
-import org.hibernate.type.SqlTypes;
 
 //import com.fasterxml.jackson.annotation.JsonFormat;
 
