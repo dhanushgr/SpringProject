@@ -2,8 +2,22 @@
 
 This project demonstrates various REST API methods (GET, PUT, POST, DELETE) using Java's Spring Boot framework and PostgreSQL database.
 
-Tech stack: Java Spring Boot, PostgreSQL database, JPA (Java Persistence API)
+Tech stack: Java Spring Boot, PostgreSQL database, JPA (Java Persistence API)\
 Tools used: VSCode, Postman, PgAdmin postgresql console
+
+
+### REST API Method Table
+```
+| Number | API Name              | HTTP Method | Path                        | Status Code    | Additional details                    |
+|--------|-----------------------|-------------|-----------------------------|----------------|---------------------------------------|
+| 1      | GET load              | GET         | /load                       | 200 OK         | All load details are retrieved        |
+| 2      | POST load             | POST        | /load                       | 201 Created    | A new load is created                 |
+| 3      | GET load by Id        | GET         | /load/{id}                  | 200 OK         | Specific load is fetched by Id        |
+| 4      | GET load by shipperId | GET         | /load/shipperId/{shipperID} | 200 OK         | Specific load is fetched by shipperId |
+| 5      | PUT load              | PUT         | /load/{id}                  | 200 OK         | Specific load is updated              |
+| 6      | DELETE load           | DELETE      | /load/{id}                  | 204 No Content | Specific load is deleted              |
+```
+
 
 ### Example screenshots
 ![Screenshot (101)](https://github.com/user-attachments/assets/29b9e656-eca1-4750-8a80-14f8c7b8f590)
