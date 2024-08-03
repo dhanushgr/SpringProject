@@ -1,12 +1,13 @@
 package com.dhanush.springproject.model;
 
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
+
+//import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,33 +31,33 @@ public class load {
     @Column(name = "Id")
     private Long id;
 
-    @Column(name = "loadingPoint", nullable = false)
+    @Column(name = "loading_point", nullable = false)
     private String loadingPoint;
 
-    @Column(name = "unloadingPoint", nullable = false)
+    @Column(name = "unloading_point", nullable = false)
     private String unloadingPoint;
 
-    @Column(name = "productType", nullable = false)
+    @Column(name = "product_type", nullable = false)
     private String productType;
 
-    @Column(name = "truckType", nullable = false)
+    @Column(name = "truck_type", nullable = false)
     private String truckType;
 
-    @Column(name = "noOfTrucks", nullable = false)
+    @Column(name = "no_of_trucks", nullable = false)
     private int noOfTrucks;
 
     @Column(name = "weight", nullable = false)
     private int weight;
 
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    @Column(columnDefinition="VARCHAR", name = "comment")
-    private Optional<String> comment;
+    @Column(name = "comment", nullable = true)
+    private String comment;
 
     @Column(name = "date", nullable = false)
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @UuidGenerator(style = UuidGenerator.Style.RANDOM)
-    @Column(name = "shipperId")
+    @Column(name = "shipper_id",unique = true, nullable = false, updatable = false)
     private UUID shipperId;
 
 
@@ -67,7 +68,7 @@ public class load {
     
     //Constructor
     public load(Long id, String loadingPoint, String unloadingPoint, String productType, String truckType,
-            int noOfTrucks, int weight, Optional<String> comment, LocalDate date, UUID shipperId) {
+            int noOfTrucks, int weight, String comment, LocalDate date, UUID shipperId) {
         this.id = id;
         this.loadingPoint = loadingPoint;
         this.unloadingPoint = unloadingPoint;
@@ -145,14 +146,13 @@ public class load {
     }
 
 
-    public Optional<String> getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(Optional<String> comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
-
 
     public LocalDate getDate() {
         return date;

@@ -2,6 +2,7 @@ package com.dhanush.springproject.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class loadServiceImplementation implements loadService{
     }
 
     @Override
-    public load getLoads(long loadId){
-        return loadrepository.getReferenceById(loadId);
+    public Optional<load> getLoads(long loadId){
+        return loadrepository.findById(loadId);
     }
 
     @Override

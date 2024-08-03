@@ -2,6 +2,8 @@ package com.dhanush.springproject.controller;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,6 @@ import com.dhanush.springproject.services.loadService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,29 +35,64 @@ public class loadController {
         this.loadrepository = loadrepository;
     }
 
-    public List<load> getAllLoads() {
-        return loadservice.getAllLoads();
+    @GetMapping("/load")
+    public ResponseEntity<List<load>> getAllLoads() {
+        try {
+            List<load> loadData = this.loadservice.getAllLoads();
+            if (loadData.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(loadData, HttpStatus.OK);
+        } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @GetMapping("/load")
-    public List<load> getLoadsByShipperId(@RequestParam UUID shipperId) {
-        return loadrepository.findByShipperId(shipperId);
+    @GetMapping("/load/shipperId/{shipperId}")
+    public ResponseEntity<List<load>> getLoadsByShipperId(@PathVariable String shipperId) {
+        try {
+            List<load> loadData = loadrepository.findByShipperId(UUID.fromString(shipperId));
+            if (loadData.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(loadData, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/load/{loadId}")
-    public load getLoads(@PathVariable long loadId) {
-        return this.loadservice.getLoads(loadId);
+    public ResponseEntity<load> getLoads(@PathVariable long loadId) {
+        try {
+            Optional<load> loadData = this.loadservice.getLoads(loadId);
+            if (loadData.isPresent()) {
+                return new ResponseEntity<>(loadData.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/load")
-    public String addLoad(@RequestBody load Load) {
-        this.loadservice.addLoad(Load);        
-        return "load details added succesfully";
+    public ResponseEntity<load> addLoad(@RequestBody load Load) {
+        try {
+            load _load = this.loadservice.addLoad(Load);
+            return new ResponseEntity<>(_load, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("load/{loadId}")
-    public load updateLoad(@RequestBody load Load) {
-        return this.loadservice.updateLoad(Load);
+    public ResponseEntity<load> updateLoad(@RequestBody load Load) {
+        try{
+            load _load = this.loadservice.updateLoad(Load);
+            return new ResponseEntity<>(_load, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/load/{loadId}")
@@ -68,5 +104,4 @@ public class loadController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

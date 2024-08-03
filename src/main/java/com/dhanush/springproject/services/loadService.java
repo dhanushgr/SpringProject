@@ -2,6 +2,8 @@ package com.dhanush.springproject.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Optional;
+
 
 import com.dhanush.springproject.model.load;
 
@@ -9,7 +11,7 @@ public interface loadService {
 
     public List<load> getAllLoads();
 
-    public load getLoads(long loadId);
+    public Optional<load> getLoads(long loadId);
 
     public List<load> getLoadsByShipperId(UUID shipperId);
 
