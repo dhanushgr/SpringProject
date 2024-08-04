@@ -18,6 +18,10 @@ Tools used: VSCode, Postman, PgAdmin postgresql console
 | 6      | DELETE load           | DELETE      | /load/{id}                  | 204 No Content | Specific load is deleted              |
 ```
 
+### Spring Boot Architecture
+| ![architecture diagram of spring boot](https://github.com/user-attachments/assets/ebd2c91b-7e42-4a81-987e-44250a5a4a8c) |
+|:--:| 
+| *Architecture of Spring Boot Framework* |
 
 ### Example screenshots
 ![Screenshot (101)](https://github.com/user-attachments/assets/29b9e656-eca1-4750-8a80-14f8c7b8f590)
