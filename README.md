@@ -24,15 +24,11 @@ Tools used: VSCode, Postman, PgAdmin postgresql console
 | *Architecture of Spring Boot Framework* |
 
 ### Example screenshots
-![Screenshot (101)](https://github.com/user-attachments/assets/29b9e656-eca1-4750-8a80-14f8c7b8f590)
-
-![Screenshot (88)](https://github.com/user-attachments/assets/cf8d207a-339c-40d8-ae82-1d75dc0877c6)
 ![Screenshot (89)](https://github.com/user-attachments/assets/d3757c7c-7600-4741-bb89-24c55f1edc72)
 ![Screenshot (90)](https://github.com/user-attachments/assets/786d712f-d211-420c-a189-e04061bfca7c)
-![Screenshot (91)](https://github.com/user-attachments/assets/fed22d8f-0a2c-48e6-a232-37557afc6fa9)
+![Screenshot (94)](https://github.com/user-attachments/assets/a84cf876-24fc-4e4d-a9d4-c5a9b670c75b)
 ![Screenshot (92)](https://github.com/user-attachments/assets/a2e8a047-e1ad-494c-a939-23dc9d38abf6)
 ![Screenshot (93)](https://github.com/user-attachments/assets/5ec06a9c-3e89-423e-ac7b-56320fc6fd6e)
-![Screenshot (94)](https://github.com/user-attachments/assets/a84cf876-24fc-4e4d-a9d4-c5a9b670c75b)
 ![Screenshot (95)](https://github.com/user-attachments/assets/8dcc7de7-eb56-4a8b-b78c-291393f069a4)
 ![Screenshot (96)](https://github.com/user-attachments/assets/f64405c4-31a5-4140-881d-dae09b5d61cd)
 ![Screenshot (97)](https://github.com/user-attachments/assets/8939c020-ac7c-469a-8452-fe80c49bd486)
