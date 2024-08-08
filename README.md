@@ -2,9 +2,10 @@
 
 This project demonstrates various REST API methods (GET, PUT, POST, DELETE) using Java's Spring Boot framework and PostgreSQL database.
 
-Tech stack: Java Spring Boot, PostgreSQL database, JPA (Java Persistence API)\
-Tools used: VSCode, Postman, PgAdmin postgresql console
+Tech stack: Java Spring Boot 3, PostgreSQL database, JPA (Java Persistence API)\
+Tools used: Postman, PgAdmin Postgresql database console, IDE (Intellij or VSCode or Eclipse)
 
+Please refer to the [Steps to run](#steps-to-run) section for instruction on how to clone and run this application. 
 
 ### REST API Method Table
 ```
@@ -22,6 +23,31 @@ Tools used: VSCode, Postman, PgAdmin postgresql console
 | ![architecture diagram of spring boot](https://github.com/user-attachments/assets/ebd2c91b-7e42-4a81-987e-44250a5a4a8c) |
 |:--:| 
 | *Architecture of Spring Boot Framework* |
+
+### Version details:
+The versions can be found in the file `pom.xml`. You can update the versions in pom.xml [here](https://github.com/dhanushgr/SpringBoot-LoadsAPI/blob/main/pom.xml).
+
+* Java version: 21
+* Spring boot version: 3.3.2
+* JPA version: 3.2.5
+* Postgresql version: 42.7.3
+
+### Steps to run
+
+1. Clone this git repository to your local computer
+```commandline
+git clone git@github.com:dhanushgr/SpringBoot-LoadsAPI.git
+```
+2. PostgreSQL Database setup:
+* Make sure that you have "PostgreSQL pgadmin" and "Postman" installed in your system. You can search in Google for the installation steps. 
+* Open Pgadmin (PostgreSQL console) and create a new database called `LoadAPI` in your Pgadmin console. You can search in Google for "How to create database in postgresql pgadmin"
+* Default port of PostgreSQL is `5432`. If there is a port conflict (port already in use), then you need to update the postgresql port in `spring.datasource.url` present in the file `src/main/resources/application.properties`:
+  https://github.com/dhanushgr/SpringBoot-LoadsAPI/blob/main/src/main/resources/application.properties#L4
+3. Open the project `SpringBoot-LoadsAPI` using your IDE (Intellij or VSCode or Eclipse etc.)
+4. In the IDE, navigate to `src/main/java/com/dhanush/springproject/SpringprojectApplication.java`
+5. Right click on `SpringprojectApplication.java` and click on `Run`
+6. Open Postman and then try out various REST API methods (GET, PUT, POST, DELETE). Alternatively, you can use `curl` command instead of Postman.
+7. You can verify the data present by running `SELECT` SQL queries in PostgreSQL pgadmin console.
 
 ### Example screenshots
 ![Screenshot (89)](https://github.com/user-attachments/assets/d3757c7c-7600-4741-bb89-24c55f1edc72)
