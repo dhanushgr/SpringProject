@@ -70,13 +70,9 @@ public class loadController {
     }
 
     @PutMapping("load/{loadId}")
-    public ResponseEntity<load> updateLoad(@RequestBody load Load) {
-        try{
-            load _load = this.loadservice.updateLoad(Load);
-            return new ResponseEntity<>(_load, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<load> updateLoad(@PathVariable long loadId, @RequestBody load loadBody) {
+        load _updatedLoad = this.loadservice.updateLoad(loadId, loadBody);
+        return new ResponseEntity<>(_updatedLoad, HttpStatus.OK);
     }
 
     @DeleteMapping("/load/{loadId}")

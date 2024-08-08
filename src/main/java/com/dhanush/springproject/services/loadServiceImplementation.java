@@ -36,9 +36,22 @@ public class loadServiceImplementation implements loadService{
     }
 
     @Override
-    public load updateLoad(load Load){
-        loadrepository.save(Load);
-        return Load;
+    public load updateLoad(long loadId, load loadBody){
+        String notFoundMessage = "Unable to update: Not found Load with loadId = " + Long.toString(loadId);
+        load loadDetail = loadrepository.findById(loadId)
+                .orElseThrow(() -> new LoadApiNotFoundException(notFoundMessage));
+
+        // Update the loadDetail with new load details
+        loadDetail.setDate(loadBody.getDate());
+        loadDetail.setLoadingPoint(loadBody.getLoadingPoint());
+        loadDetail.setNoOfTrucks(loadBody.getNoOfTrucks());
+        loadDetail.setProductType(loadBody.getProductType());
+        loadDetail.setTruckType(loadBody.getTruckType());
+        loadDetail.setUnloadingPoint(loadBody.getUnloadingPoint());
+        loadDetail.setWeight(loadBody.getWeight());
+        loadDetail.setComment(loadBody.getComment());
+
+        return loadrepository.save(loadDetail);
     }
 
     @Override
