@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dhanush.springproject.model.load;
 import com.dhanush.springproject.repository.loadRepository;
 import com.dhanush.springproject.services.loadService;
+import com.dhanush.springproject.exception.LoadApiNotFoundException;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 public class loadController {
 
     @Autowired
-    private loadService loadservice;
+    private final loadService loadservice;
     private final loadRepository loadrepository;
 
     //constructor. we should create this constructor as soon as we initialize the objects(loadservice and loadrepository)
@@ -37,42 +37,26 @@ public class loadController {
 
     @GetMapping("/load")
     public ResponseEntity<List<load>> getAllLoads() {
-        try {
-            List<load> loadData = this.loadservice.getAllLoads();
-            if (loadData.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(loadData, HttpStatus.OK);
-        } catch (Exception e) {
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        List<load> loadData = this.loadservice.getAllLoads();
+        if (loadData.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+        return new ResponseEntity<>(loadData, HttpStatus.OK);
     }
 
     @GetMapping("/load/shipperId/{shipperId}")
     public ResponseEntity<List<load>> getLoadsByShipperId(@PathVariable String shipperId) {
-        try {
-            List<load> loadData = loadrepository.findByShipperId(UUID.fromString(shipperId));
-            if (loadData.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(loadData, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        List<load> loadData = loadrepository.findByShipperId(UUID.fromString(shipperId));
+        if (loadData.isEmpty()) {
+            throw new LoadApiNotFoundException("Not found Load with shipperId = " + shipperId);
         }
+        return new ResponseEntity<>(loadData, HttpStatus.OK);
     }
 
     @GetMapping("/load/{loadId}")
     public ResponseEntity<load> getLoad(@PathVariable long loadId) {
-        try {
-            Optional<load> loadData = this.loadservice.getLoad(loadId);
-            if (loadData.isPresent()) {
-                return new ResponseEntity<>(loadData.get(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        load loadData = this.loadservice.getLoad(loadId);
+        return new ResponseEntity<>(loadData, HttpStatus.OK);
     }
 
     @PostMapping("/load")

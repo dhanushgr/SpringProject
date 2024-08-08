@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.Optional;
 
+import com.dhanush.springproject.exception.LoadApiNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +23,10 @@ public class loadServiceImplementation implements loadService{
     }
 
     @Override
-    public Optional<load> getLoad(long loadId){
-        return loadrepository.findById(loadId);
-    }
-
-    @Override
-    public List<load> getLoadsByShipperId(UUID shipperId){
-        return loadrepository.findByShipperId(shipperId);
+    public load getLoad(long loadId){
+        String notFoundMessage = "Not found Load with loadId = " + Long.toString(loadId);
+        return loadrepository.findById(loadId)
+                .orElseThrow(() -> new LoadApiNotFoundException(notFoundMessage));
     }
 
     @Override
@@ -44,8 +42,7 @@ public class loadServiceImplementation implements loadService{
     }
 
     @Override
-    public void deleteLoad(long parseLong){
-        load entity = loadrepository.getReferenceById(parseLong);
-        loadrepository.delete(entity);
+    public void deleteLoad(long loadId){
+        loadrepository.deleteById(loadId);
     }
 }

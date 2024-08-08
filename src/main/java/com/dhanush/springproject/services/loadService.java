@@ -11,13 +11,11 @@ public interface loadService {
 
     public List<load> getAllLoads();
 
-    public Optional<load> getLoad(long loadId);
-
-    public List<load> getLoadsByShipperId(UUID shipperId);
+    public load getLoad(long loadId);
 
     public load addLoad(load Load);
 
     public load updateLoad(load Load);
 
-    public void deleteLoad(long parseLong);
+    public void deleteLoad(long loadId);
 }
