@@ -61,12 +61,8 @@ public class loadController {
 
     @PostMapping("/load")
     public ResponseEntity<load> addLoad(@RequestBody load Load) {
-        try {
-            load _load = this.loadservice.addLoad(Load);
-            return new ResponseEntity<>(_load, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        load _load = this.loadservice.addLoad(Load);
+        return new ResponseEntity<>(_load, HttpStatus.CREATED);
     }
 
     @PutMapping("load/{loadId}")
@@ -76,12 +72,8 @@ public class loadController {
     }
 
     @DeleteMapping("/load/{loadId}")
-    public ResponseEntity<HttpStatus> deleteLoad(@PathVariable String loadId){
-        try{
-            this.loadservice.deleteLoad(Long.parseLong(loadId));
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<HttpStatus> deleteLoad(@PathVariable long loadId){
+        this.loadservice.deleteLoad(loadId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
